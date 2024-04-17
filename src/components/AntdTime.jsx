@@ -5,14 +5,19 @@ import dayjs from "dayjs";
 
 const format = "HH:mm";
 
+const formatTime = (regTime) => {
+  const hh = regTime.substring(0, 2);
+  const mm = regTime.substring(2);
+
+  return `${hh}:${mm}`;
+};
+
 const TimeInput = ({ value, onChange }) => {
   const [selectedTime, setSelectedTime] = useState(null);
 
   useMount(() => {
     if (value) {
-      setSelectedTime(
-        dayjs(`${value.substring(0, 2)}:${value.substring(2)}`, format)
-      );
+      setSelectedTime(dayjs(formatTime(value), format));
     }
   });
 
