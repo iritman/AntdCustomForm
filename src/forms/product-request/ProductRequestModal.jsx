@@ -18,6 +18,7 @@ const ModalForm = ({ initialValues, onFormInstanceReady }) => {
       form={form}
       name="form_in_modal"
       initialValues={initialValues}
+      // onValuesChange={}
     >
       <AntdControl
         control={ControlType.Input}
@@ -80,6 +81,7 @@ const ModalForm = ({ initialValues, onFormInstanceReady }) => {
         control={ControlType.Date}
         fieldName="regDate"
         itemTitle="تاریخ ثبت"
+        form={form}
       />
     </Form>
   );
