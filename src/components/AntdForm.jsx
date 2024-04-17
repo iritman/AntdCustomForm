@@ -1,5 +1,5 @@
 import React from "react";
-import { Form } from "antd";
+import { Form, Row } from "antd";
 import { useMount } from "react-use";
 import faIR from "antd/locale/fa_IR";
 
@@ -20,7 +20,9 @@ const AntdForm = (props) => {
       initialValues={initialValues}
       {...rest}
     >
-      {props.children}
+      <Row gutter={[5, 1]} style={{ marginLeft: 1 }}>
+        {props.children}
+      </Row>
     </Form>
   );
 };
