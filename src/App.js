@@ -1,6 +1,7 @@
 import "./App.css";
 import { ConfigProvider } from "antd";
 import faIR from "antd/locale/fa_IR";
+import "dayjs/locale/fa";
 import ProductRequestForm from "./forms/product-request/ProductRequestForm";
 
 const App = () => {

@@ -1,31 +1,24 @@
 import React, { useState } from "react";
-import { ConfigProvider, Button } from "antd";
+import { Button } from "antd";
 import ProductRequestModal from "./ProductRequestModal";
-// import faIR from "antd/locale/fa_IR";
-// import dayjs from "dayjs";
-// import jalaliPlugin from "@zoomit/dayjs-jalali-plugin";
-// import "dayjs/locale/fa";
-
-// dayjs.extend(jalaliPlugin);
-// dayjs.calendar("jalali");
 
 const ProductRequestForm = () => {
   const [formValues, setFormValues] = useState({
     title: "---",
     city: 2,
     regDate: "1403-07-24",
-    // dayjs("1403-07-24", { jalali: true }),
+    regTime: "1735",
   });
   const [open, setOpen] = useState(false);
 
   const onCreate = (values) => {
     console.log("Received values of form: ", values);
+
     setFormValues(values);
     setOpen(false);
   };
 
   return (
-    // <ConfigProvider direction="rtl" locale={faIR}>
     <>
       <Button type="primary" onClick={() => setOpen(true)}>
         New Collection
@@ -48,7 +41,6 @@ const ProductRequestForm = () => {
         }
       />
     </>
-    // </ConfigProvider>
   );
 };
 

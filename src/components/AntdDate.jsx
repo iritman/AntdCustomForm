@@ -3,7 +3,6 @@ import { useMount } from "react-use";
 import { Form, DatePicker } from "antd";
 import dayjs from "dayjs";
 import jalaliPlugin from "@zoomit/dayjs-jalali-plugin";
-import "dayjs/locale/fa";
 
 const DateInput = ({ value, onChange }) => {
   const [selectedDate, setSelectedDate] = useState(null);

@@ -6,6 +6,7 @@ import AntdRadio from "./AntdRadio";
 import AntdSelect from "./AntdSelect";
 import AntdCheckbox from "./AntdCheckbox";
 import AntdDate from "./AntdDate";
+import AntdTime from "./AntdTime";
 
 export const ControlType = {
   Input: "input",
@@ -15,6 +16,7 @@ export const ControlType = {
   Checkbox: "checkbox",
   Switch: "switch",
   Date: "date",
+  Time: "time",
 };
 
 export const AntdControl = (props) => {
@@ -35,9 +37,9 @@ export const AntdControl = (props) => {
       return <AntdSwitch {...rest} />;
     case ControlType.Date:
       return <AntdDate {...rest} />;
+    case ControlType.Time:
+      return <AntdTime {...rest} />;
     default:
       return null;
   }
 };
-
-// export default { ControlType, AntdControl };

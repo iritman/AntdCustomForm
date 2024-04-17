@@ -83,6 +83,13 @@ const ModalForm = ({ initialValues, onFormInstanceReady }) => {
         itemTitle="تاریخ ثبت"
         form={form}
       />
+
+      <AntdControl
+        control={ControlType.Time}
+        fieldName="regTime"
+        itemTitle="زمان ثبت"
+        form={form}
+      />
     </Form>
   );
 };
