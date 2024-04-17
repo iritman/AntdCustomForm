@@ -4,12 +4,20 @@ import { Form, DatePicker } from "antd";
 import dayjs from "dayjs";
 import jalaliPlugin from "@zoomit/dayjs-jalali-plugin";
 
+const formatDate = (regDate) => {
+  const year = regDate.substring(0, 4);
+  const month = regDate.substring(4, 6);
+  const day = regDate.substring(6);
+
+  return `${year}-${month}-${day}`;
+};
+
 const DateInput = ({ value, onChange }) => {
   const [selectedDate, setSelectedDate] = useState(null);
 
   useMount(() => {
     if (value) {
-      setSelectedDate(dayjs(value, { jalali: true }));
+      setSelectedDate(dayjs(formatDate(value), { jalali: true }));
     }
   });
 
@@ -53,7 +61,7 @@ const DateInput = ({ value, onChange }) => {
   };
 
   const onDateChange = (date, dateString) => {
-    onChange?.(dateString);
+    onChange?.(dateString.replace(/-/g, ""));
     setSelectedDate(date);
   };
 

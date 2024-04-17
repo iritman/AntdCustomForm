@@ -6,7 +6,7 @@ const ProductRequestForm = () => {
   const [formValues, setFormValues] = useState({
     title: "---",
     city: 2,
-    regDate: "1403-07-24",
+    regDate: "14030724",
     regTime: "1735",
   });
   const [open, setOpen] = useState(false);
