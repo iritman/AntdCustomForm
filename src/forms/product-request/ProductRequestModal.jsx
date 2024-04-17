@@ -1,107 +1,15 @@
 import React, { useState } from "react";
-import { useMount } from "react-use";
-import { Form, Modal } from "antd";
+import { Modal } from "antd";
 import { ControlType, AntdControl } from "../../components/AntdControl";
-import faIR from "antd/locale/fa_IR";
 
-const ModalForm = ({ initialValues, onFormInstanceReady }) => {
-  const [form] = Form.useForm();
-
-  useMount(() => {
-    onFormInstanceReady(form);
-  });
-
-  return (
-    <Form
-      validateMessages={faIR.Form.defaultValidateMessages}
-      layout="horizontal"
-      form={form}
-      name="form_in_modal"
-      initialValues={initialValues}
-      // onValuesChange={}
-    >
-      <AntdControl
-        control={ControlType.Input}
-        fieldName="title"
-        title="عنوان"
-        rules={[{ required: true }]}
-        maxLength={5}
-        autoFocus={true}
-      />
-
-      <AntdControl
-        control={ControlType.Dropdown}
-        fieldName="city"
-        title="شهر"
-        rules={[{ required: true }]}
-        dataSource={[
-          { title: "تهران", value: 1 },
-          { title: "ساری", value: 2 },
-          { title: "شیراز", value: 3 },
-          { title: "مشهد", value: 4 },
-          { title: "کاشان", value: 5 },
-          { title: "اصفهان", value: 6 },
-          { title: "بوشهر", value: 7 },
-        ]}
-      />
-
-      <AntdControl
-        control={ControlType.TextArea}
-        fieldName="description"
-        title="توضیحات"
-        maxLength={15}
-        rows={4}
-        showCount
-      />
-
-      <AntdControl
-        control={ControlType.Radio}
-        fieldName="modifier"
-        title="وضعیت"
-        dataSource={[
-          { title: "Public", value: "public" },
-          { title: "Private", value: "private" },
-        ]}
-      />
-
-      <AntdControl
-        control={ControlType.Switch}
-        fieldName="isValid"
-        checkedChildren="فعال"
-        unCheckedChildren="غیر فعال"
-      />
-
-      <AntdControl
-        control={ControlType.Checkbox}
-        fieldName="port"
-        itemTitle="فعال"
-      />
-
-      <AntdControl
-        control={ControlType.Date}
-        fieldName="regDate"
-        itemTitle="تاریخ ثبت"
-        form={form}
-      />
-
-      <AntdControl
-        control={ControlType.Time}
-        fieldName="regTime"
-        itemTitle="زمان ثبت"
-        form={form}
-      />
-    </Form>
-  );
-};
-
-const ProductRequestModal = ({ open, onCreate, onCancel, initialValues }) => {
+const ProductRequestModal = ({ open, onSubmit, onCancel, initialValues }) => {
   const [formInstance, setFormInstance] = useState();
 
-  const handleClick = async () => {
+  const handleSubmit = async () => {
     try {
       const values = await formInstance?.validateFields();
       formInstance?.resetFields();
-      onCreate(values);
+      onSubmit(values);
     } catch (error) {
       console.log("Failed:", error);
     }
@@ -118,14 +26,85 @@ const ProductRequestModal = ({ open, onCreate, onCancel, initialValues }) => {
       //   }}
       onCancel={onCancel}
       destroyOnClose
-      onOk={handleClick}
+      onOk={handleSubmit}
     >
-      <ModalForm
+      <AntdControl
+        control={ControlType.Form}
         initialValues={initialValues}
         onFormInstanceReady={(instance) => {
           setFormInstance(instance);
         }}
-      />
+      >
+        <AntdControl
+          control={ControlType.Input}
+          fieldName="title"
+          title="عنوان"
+          rules={[{ required: true }]}
+          maxLength={5}
+          autoFocus={true}
+        />
+
+        <AntdControl
+          control={ControlType.Dropdown}
+          fieldName="city"
+          title="شهر"
+          rules={[{ required: true }]}
+          allowClear
+          dataSource={[
+            { title: "تهران", value: 1 },
+            { title: "ساری", value: 2 },
+            { title: "شیراز", value: 3 },
+            { title: "مشهد", value: 4 },
+            { title: "کاشان", value: 5 },
+            { title: "اصفهان", value: 6 },
+            { title: "بوشهر", value: 7 },
+          ]}
+        />
+
+        <AntdControl
+          control={ControlType.TextArea}
+          fieldName="description"
+          title="توضیحات"
+          maxLength={15}
+          rows={4}
+          showCount
+        />
+
+        <AntdControl
+          control={ControlType.Radio}
+          fieldName="modifier"
+          title="وضعیت"
+          dataSource={[
+            { title: "Public", value: "public" },
+            { title: "Private", value: "private" },
+          ]}
+        />
+
+        <AntdControl
+          control={ControlType.Switch}
+          fieldName="isValid"
+          checkedChildren="فعال"
+          unCheckedChildren="غیر فعال"
+        />
+
+        <AntdControl
+          control={ControlType.Checkbox}
+          fieldName="port"
+          itemTitle="فعال"
+        />
+
+        <AntdControl
+          control={ControlType.Date}
+          fieldName="regDate"
+          itemTitle="تاریخ ثبت"
+        />
+
+        <AntdControl
+          control={ControlType.Time}
+          fieldName="regTime"
+          itemTitle="زمان ثبت"
+        />
+      </AntdControl>
     </Modal>
   );
 };

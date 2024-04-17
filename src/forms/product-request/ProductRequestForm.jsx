@@ -11,7 +11,7 @@ const ProductRequestForm = () => {
   });
   const [open, setOpen] = useState(false);
 
-  const onCreate = (values) => {
+  const onSubmit = (values) => {
     console.log("Received values of form: ", values);
 
     setFormValues(values);
@@ -32,7 +32,7 @@ const ProductRequestForm = () => {
 
       <ProductRequestModal
         open={open}
-        onCreate={onCreate}
+        onSubmit={onSubmit}
         onCancel={() => setOpen(false)}
         initialValues={
           formValues || {

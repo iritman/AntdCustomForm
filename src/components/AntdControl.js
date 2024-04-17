@@ -1,4 +1,5 @@
 import React from "react";
+import AntdForm from "./AntdForm";
 import AntdInput from "./AntdInput";
 import AntdTextArea from "./AntdTextArea";
 import AntdSwitch from "./AntdSwitch";
@@ -9,6 +10,7 @@ import AntdDate from "./AntdDate";
 import AntdTime from "./AntdTime";
 
 export const ControlType = {
+  Form: "form",
   Input: "input",
   TextArea: "textarea",
   Dropdown: "select",
@@ -23,6 +25,8 @@ export const AntdControl = (props) => {
   const { control, ...rest } = props;
 
   switch (control) {
+    case ControlType.Form:
+      return <AntdForm {...rest}>{props.children}</AntdForm>;
     case ControlType.Input:
       return <AntdInput {...rest} />;
     case ControlType.TextArea:
