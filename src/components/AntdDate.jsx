@@ -61,14 +61,15 @@ const DateInput = ({ value, onChange }) => {
   };
 
   const onDateChange = (date, dateString) => {
-    onChange?.(dateString.replace(/-/g, ""));
+    onChange?.(date ? dateString.replace(/-/g, "") : "");
     setSelectedDate(date);
   };
 
   return (
     <DatePicker
       locale={datePickerLocale}
-      value={selectedDate || dayjs(value, { jalali: true })}
+      value={selectedDate || (value ? dayjs(value, { jalali: true }) : "")}
+      style={{ width: "100%" }}
       onChange={onDateChange}
     />
   );
